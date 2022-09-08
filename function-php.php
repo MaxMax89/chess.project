@@ -302,10 +302,29 @@ $array = [16,5,34,88,22,5];
  }));
                                         // Пример работы функции array_walk
 
-$array = [100,200,300,400,];
+$array = [100,200,300,400];
     var_dump(array_walk($array, function($element){
   echo $element;
 }));
+
+
+                                       //Группировка массива
+
+
+$array = [
+[customer => one, itemno => yellow, price => 2],
+[customer => one, itemno => blue, price => 5],
+[customer => two, itemno => red, price => 4]
+];
+
+$new_array = [];
+foreach ($array as $value) {
+  $new_array[$value['customer']][] = array('itemno' => $value['itemno'], 'price' => $value['price']);
+}
+
+
+
+
 
 
 
