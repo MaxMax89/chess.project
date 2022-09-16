@@ -194,22 +194,12 @@ echo $sum;
 
 
 
-function inArray($num, $array){
-  foreach ($array as $value) {
-    if ($num == $value) {
-      return true;     
-    } 
-      return false;
-    
-  }
-}
 
 $arrayNum = [15,22,458,333,21,98];
-  if  inArray(333,$arrayNum) === true {
-    echo "Yes";
-
-  } else{
-    echo "No";
+  if (in_array(333, $arrayNum) === true) {
+    echo 'Yes';
+  } else {
+    echo 'no';
   }
     
          //Задача: реализуйте функцию isSimple, которая параметром будет принимать число и проверять, простое оно или нет. Простое число - это число, которое не делится ни на одно другое число (кроме как на 1 и на само себя - на это делятся все числа). Если число простое - функция должна вернуть true, в противном случае false.
@@ -291,7 +281,7 @@ echo cut('abcdefghijKLMNJO');
 
 $array = [16,5,34,88,22,5];
  var_dump(array_map(function($elem){
-  return $elem = 10;
+  return $elem + 10;
  },$array));
 
                                        //Пример работы функции array_filter
@@ -325,15 +315,27 @@ foreach ($array as $value) {
 
 
 
+function debug($data) {
+  echo '<pre>' . print_r($data, 1) . '</pre>';
+}
 
 
 
+$array = [
+[склад => сухой, компания => АГРОТОРГ, комплектовщик => Пестряков,],
+[склад => сухой, компания => СИРИУС, комплектовщик => Абдуллаев,],
+[склад => ФРЕШ, компания => АГРОТОРГ, приемщик => Шумов,],
+[склад => ФРОВ, компания => АГРОТОРГ, ВЭШ => Шлыков,] 
+];
 
+debug($array);
 
+$group_array = [];
+foreach ($array as $value) {
+  $group_array[$value['компания']][] = array('склад' => $value['склад'], 'комплектовщик' => $value['комплектовщик']);
+}
 
-
-
-
+debug($group_array);
 
 
 ?>
