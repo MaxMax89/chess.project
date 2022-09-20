@@ -33,7 +33,7 @@ function one_function($num) {
 
 // Дан массив с числами. Проверьте, что в этом массиве есть число 5. Если есть - выведите 'да', а если нет - выведите 'нет'.
 
-$array_nums = [4,9,23,15,4,5,3];
+$array_nums = [4, 9, 23, 15,4,5,3];
   $flag = false;          
 
  foreach ($array_nums as $value) {
@@ -336,6 +336,97 @@ foreach ($array as $value) {
 }
 
 debug($group_array);
+
+
+
+
+
+
+
+
+$employeesList = [
+    [
+     "name" => "Иван Степанович",
+     "department" => "Бухгалтерия",
+     "count_of_people" => 30,
+     "note" =>
+        [
+         "position" => "Бухгалтер",
+         " solary_per_month" => 55000
+        ]
+    ],
+    [
+     "name" => "Светлана Юрьевна",
+     "department" => "Юридический 1",
+     "count_of_people" => 30,
+     "note" =>
+        [
+         "position" => "Юрист",
+         " solary_per_month" => 50000
+        ]
+    ],
+    [
+     "name" => "Борис Борисович",
+     "department" => "Юридический 2",
+     "count_of_people" => 30,
+     "note" =>
+        [
+         "position" => "Юрист",
+         " solary_per_month" => 45000
+        ]
+    ],
+    [
+     "name" => "Леонид Иванович",
+     "department" => "Бухгалтерия",
+     "count_of_people" => 30,
+     "note" =>
+        [
+         "position" => "Бухгалтер",
+         " solary_per_month" => 40000
+        ]
+    ],
+];     
+
+
+$employeesPositionList = [];
+    foreach ($employeesList as  $value) 
+    {
+        $employeesPositionList[$value["note"]["position"]][] = [
+            "name" => $value["name"],
+            "department" => $value["department"], 
+            "count_of_people" => $value["count_of_people"],
+            "note" => 
+                [
+                  "solary_per_month" => $value["note"]["solary_per_month"]
+                ]
+        ];
+  
+    }
+
+
+array_multisort($employeesPositionList["Бухгалтер"]["note"]["solary_per_month"], SORT_DESC,
+                $employeesPositionList["Юрист"]["note"]["solary_per_month"], SORT_DESC);
+
+usort($employeesPositionList, my_sort);
+debug($employeesPositionList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ?>
