@@ -352,7 +352,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Бухгалтер",
-         " solary_per_month" => 55000
+         "solary_per_month" => 55000
         ]
     ],
     [
@@ -362,7 +362,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Юрист",
-         " solary_per_month" => 50000
+         "solary_per_month" => 50000
         ]
     ],
     [
@@ -372,7 +372,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Юрист",
-         " solary_per_month" => 45000
+         "solary_per_month" => 45000
         ]
     ],
     [
@@ -382,33 +382,21 @@ $employeesList = [
      "note" =>
         [
          "position" => "Бухгалтер",
-         " solary_per_month" => 40000
+         "solary_per_month" => 40000
         ]
     ],
 ];     
 
 
-$employeesPositionList = [];
-    foreach ($employeesList as  $value) 
-    {
-        $employeesPositionList[$value["note"]["position"]][] = [
-            "name" => $value["name"],
-            "department" => $value["department"], 
-            "count_of_people" => $value["count_of_people"],
-            "note" => 
-                [
-                  "solary_per_month" => $value["note"]["solary_per_month"]
-                ]
-        ];
+
+       
   
     }
 
 
-array_multisort($employeesPositionList["Бухгалтер"]["note"]["solary_per_month"], SORT_DESC,
-                $employeesPositionList["Юрист"]["note"]["solary_per_month"], SORT_DESC);
 
-usort($employeesPositionList, my_sort);
-debug($employeesPositionList);
+
+
 
 
 

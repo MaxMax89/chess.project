@@ -4,56 +4,60 @@ $employeesList = [
     [
      "name" => "Иван Степанович",
      "department" => "Бухгалтерия",
-     "people" => 30,
+     "count_of_people" => 30,
      "note" =>
         [
          "position" => "Бухгалтер",
-         "solary" => 55000
+         " solary_per_month" => 55000
         ]
     ],
     [
      "name" => "Светлана Юрьевна",
      "department" => "Юридический 1",
-     "people" => 30,
+     "count_of_people" => 30,
      "note" =>
         [
          "position" => "Юрист",
-         "solary" => 50000
+         " solary_per_month" => 50000
         ]
     ],
     [
      "name" => "Борис Борисович",
      "department" => "Юридический 2",
-     "people" => 30,
+     "count_of_people" => 30,
      "note" =>
         [
          "position" => "Юрист",
-         "solary" => 45000
+         " solary_per_month" => 45000
         ]
     ],
     [
      "name" => "Леонид Иванович",
      "department" => "Бухгалтерия",
-     "people" => 30,
+     "count_of_people" => 30,
      "note" =>
         [
          "position" => "Бухгалтер",
-         "solary" => 40000
+         " solary_per_month" => 40000
         ]
     ],
-];     
-//--------------------sort for solary--------------
+];
 
 
+function my_sort ($key) {
+   return function($a, $b) use ($key) {
+   return $a[$key] <=> $b[$key];
+  };
+}
+  usort($employeesList, my_sort("note"]["solary_per_month"));
+
+  debug($employeesList);
 
 
-$employeesListgroup = [];
-  foreach ($employeesList as $key => $value) {
-    $employeesListgroup[$value["department"]]["workers"][] = $value;  
-      }
-
-
-
-
+function debug($data){
+   echo '<pre>';
+   print_r($data);
+   echo '</pre>';
+}
 
 ?>
