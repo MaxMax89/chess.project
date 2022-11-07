@@ -28,7 +28,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Юрист",
-         "solary" => 45000
+         "solary" => 40000
         ]
     ],
     [
@@ -38,14 +38,18 @@ $employeesList = [
      "note" =>
         [
          "position" => "Бухгалтер",
-         "solary" => 40000
+         "solary" => 45000
         ]
     ],
 ];     
-//--------------------sort for solary--------------
+//--------------------sort for solary-------------------
+function my_sort ($a, $b) {
+   return $a["note"]["solary"] <=> $b["note"]["solary"];
+  }
+  
+  usort($employeesList, my_sort);
 
-
-
+//--------------------group array-----------------------
 
 $employeesListgroup = [];
   foreach ($employeesList as $key => $value) {
