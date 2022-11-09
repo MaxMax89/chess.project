@@ -56,8 +56,13 @@ $employeesListgroup = [];
     $employeesListgroup[$value["department"]]["workers"][] = $value;  
       }
 
+debug($employeesListgroup);
 
 
-
+function debug($data) {
+    echo '<pre>';
+    print_r($data);
+    echo '</pre>';
+};
 
 ?>
