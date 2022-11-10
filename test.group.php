@@ -53,7 +53,7 @@ function my_sort ($a, $b) {
 
 $employeesListgroup = [];
   foreach ($employeesList as $key => $value) {
-    $employeesListgroup[$value["department"]]["workers"][] = $value;  
+    $employeesListgroup[$value["note"]["position"]]["workers"][] = $value;  
       }
 
 debug($employeesListgroup);
