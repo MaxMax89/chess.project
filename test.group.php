@@ -1,6 +1,6 @@
 <meta  charset = 'UTF-8'/>
 <?php
-$employeesList = [
+$workers = [
     [
      "name" => "Иван Степанович",
      "department" => "Бухгалтерия",
@@ -8,6 +8,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Бухгалтер",
+         "position_code" => "bug",
          "solary" => 55000
         ]
     ],
@@ -18,6 +19,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Юрист",
+         "position_code" => "ur",
          "solary" => 50000
         ]
     ],
@@ -28,6 +30,7 @@ $employeesList = [
      "note" =>
         [
          "position" => "Юрист",
+         "position_code" => "ur",
          "solary" => 40000
         ]
     ],
@@ -38,22 +41,27 @@ $employeesList = [
      "note" =>
         [
          "position" => "Бухгалтер",
+         "position_code" => "bug",
          "solary" => 45000
         ]
     ],
 ];     
 //--------------------sort for solary-------------------
-function my_sort($a, $b) {
-   return $a["note"]["solary"] <=> $b["note"]["solary"];
-  }
- uasort($employeesList, my_sort); 
-  
+//function my_sort($a, $b) {
+   //return $a["note"]["solary"] <=> $b["note"]["solary"];
+  //}
+// uasort($employeesList, my_sort); 
+
+//-------------------group for position-----------------  
+$workersgroup = [];
+foreach ($workers as $key => $value) {
+    $workersgroup[$value["note"]["position_code"]][] = $value;
+}
 
 
 
 
-
-debug($employeesList);
+debug($workersgroup);
 
 
 function debug($data) {
