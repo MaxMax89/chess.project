@@ -47,16 +47,20 @@ $workers = [
     ],
 ];     
 //--------------------sort for solary-------------------
-//function my_sort($a, $b) {
-   //return $a["note"]["solary"] <=> $b["note"]["solary"];
-  //}
-// uasort($employeesList, my_sort); 
+function my_sort($a, $b) {
+   return $a["note"]["solary"] <=> $b["note"]["solary"];
+  }
+ uasort($workers, my_sort); 
 
 //-------------------group for position-----------------  
 $workersgroup = [];
 foreach ($workers as $key => $value) {
     $workersgroup[$value["note"]["position_code"]][] = $value;
 }
+
+//-------------------sort for solary in group-----------
+
+
 
 
 
