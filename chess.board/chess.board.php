@@ -27,7 +27,7 @@
                         if ($col%2 == 0){
                              $chess_board .="<td class=black></td>";
                          } else {
-                          $chess_board .="<td td class=white></td>";
+                          $chess_board .="<td  class=white></td>";
                          }
                      }   
                  }
