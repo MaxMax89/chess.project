@@ -3,6 +3,10 @@ $aplhapet = ["a","b","c","d","e","f","g","h"];
 $numbers = ["8","7","6","5","4","3","2","1"];
 $aplha = -1;
 $nums = -1;
+$class_white = "<td class=\"white\"></td>";
+$class_black = "<td class=\"black\"></td>";
+
+
 $chess_board = "<table class=\"board\">";
     
     for ($row=0; $row < 9; $row++) { 
@@ -28,18 +32,18 @@ $chess_board = "<table class=\"board\">";
                 }
                 elseif($row%2 != 0){
                     if($col%2 != 0){
-                        $chess_board .= "<td class=\"black\"></td>";
+                        $chess_board .= $class_black;
                     }
                      else{
-                        $chess_board .= "<td class=\"white\"></td>";
+                        $chess_board .= $class_white;
                     }
                 }
                  elseif($row%2 == 0){
                      if($col%2 == 0){
-                         $chess_board .= "<td class=\"black\"></td>";
+                         $chess_board .= $class_black;
                     }
                      else{
-                         $chess_board .= "<td class=\"white\"></td>";
+                         $chess_board .= $class_white;
                     }
                 }
             }
