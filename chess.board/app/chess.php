@@ -2,11 +2,11 @@
 
 $symbols = range('A','Z');
 
-$countRow = 8;
-$countCol = 8;
+$countRow = $_POST["countRow"] or $countRow = 8;
+$countCol = $_POST["countCol"] or $countCol = 8;
 
-$userColorOne = "green";
-$userColorTwo = "blue";
+$userColorOne = $_POST["colorOne"] or $userColorOne = "black";
+$userColorTwo = $_POST["colorTwo"] or $userColorTwo = "silver";
 
 $symbolBoard = getSymbols($symbols, $col);
 
@@ -32,13 +32,13 @@ for ($row = 1 ; $row <= $countRow ; $row++) {
         $tableBoard .= $tdBoard;
            
     }
+     $tableBoard .= $tdNumbers;
     $tableBoard .= "</tr>";
 }
-
+$tableBoard .= getTrSymbols($symbols, $countCol);
 $tableBoard .= "</table>";
 
 echo $tableBoard;
-
 
 
 
