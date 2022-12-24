@@ -9,5 +9,7 @@
   <body>
     <div class="main_conteiner">
       <div class="main_wrapper">
-        <div class="board_conteiner">
       <?include("inc_menu_top.php");?>
+      
+      
+    

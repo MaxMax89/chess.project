@@ -2,13 +2,15 @@
 
 $symbols = range('A','Z');
 
-$countRow = $_POST["countRow"] or $countRow = 8;
-$countCol = $_POST["countCol"] or $countCol = 8;
+$countRow =  getUserCountRow($countRow = 8);
+$countCol = getUserCountCol($countCol = 8);
 
-$userColorOne = $_POST["colorOne"] or $userColorOne = "black";
-$userColorTwo = $_POST["colorTwo"] or $userColorTwo = "silver";
+$userColorOne = getUserColorOne($userColorOne = "black");
+$userColorTwo = getUserColorTwo($userColorTwo = "silver");
 
 $symbolBoard = getSymbols($symbols, $col);
+
+   include("inc/form.php");
 
 $tableBoard = "<table class =\"board\">";
 
@@ -42,7 +44,33 @@ echo $tableBoard;
 
 
 
+function getUserCountCol($countCol = 8){
+    if(isset($_POST["countCol"])){
+        $countCol = $_POST["countCol"];
+    }
+    return $countCol;
+}
 
+function getUserCountRow($countRow = 8){
+    if(isset($_POST["countRow"])){
+        $countRow = $_POST["countRow"];
+    }
+    return $countRow;
+}
+
+function getUserColorOne($userColorOne = "black"){
+    if (isset($_POST["colorOne"])){
+        $userColorOne = $_POST["colorOne"];
+    }
+    return $userColorOne;
+}
+
+function getUserColorTwo($userColorTwo = "silver"){
+    if (isset($_POST["colorTwo"])){
+        $userColorTwo = $_POST["colorTwo"];
+    }
+    return $userColorTwo;
+}
 
 function getTrSymbols($symbols, $countCol){
     $trSymbols  = "<tr>";
