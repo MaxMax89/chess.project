@@ -2,11 +2,39 @@
 
 $symbols = range('A','Z');
 
-$countRow =  getUserCountRow($countRow = 8);
-$countCol = getUserCountCol($countCol = 8);
+$userCountRow = clearDate($_POST['countRow']);
+$userCountCol = clearDate($_POST['countCol']);
 
-$userColorOne = getUserColorOne($userColorOne = "black");
-$userColorTwo = getUserColorTwo($userColorTwo = "silver");
+$userColorOne = clearDate($_POST['colorOne']);
+$userColorTwo = clearDate($_POST['colorTwo']);
+
+$errorText = [];
+
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if(strlen($userColorOne) > 10){
+        $userColorOne = false;
+        $errorText['colorOne'] = '<small class="error_text">максимум 10 символов</small>';
+    }
+    
+    if(strlen($userColorTwo) > 10){
+        $userColorTwo = false;
+        $errorText['colorTwo'] = '<small class="error_text">максимум 10 символов</small>' ;
+    }
+
+    if(!filter_var($userCountRow,  FILTER_VALIDATE_INT) || $userCountRow > 26){
+        $userCountRow = 8;
+        $errorText['countRow'] = '<small class="error_text">сдесь должно быть число от 1 до 26</small>' ;
+    }
+   
+    if(!filter_var($userCountCol,  FILTER_VALIDATE_INT) || $userCountCol > 26){
+        $userCountCol = 8;
+        $errorText['countCol'] = '<small class="error_text">сдесь должно быть число от 1 до 26</small>' ;
+    }
+}
+
+$countRow = getCountRow($userCountRow);
+$countCol = getCountCol($userCountCol);
 
 $symbolBoard = getSymbols($symbols, $col);
 
@@ -25,10 +53,11 @@ for ($row = 1 ; $row <= $countRow ; $row++) {
     $tableBoard .= $tdNumbers;
 
     for ($col = 1; $col <= $countCol ; $col++) {
-        
+
+        $classTd = getClassTd($row, $col);
         $symbolBoard = getSymbols($symbols, $col);
         $color = getColor($userColorOne, $userColorTwo, $row, $col);
-        $tdBoard = getTdBoard($color, $symbolBoard, $numbersBoard, $row);
+        $tdBoard = getTdBoard($color, $symbolBoard, $numbersBoard, $row, $classTd);
         
         
         $tableBoard .= $tdBoard;
@@ -43,34 +72,48 @@ $tableBoard .= "</table>";
 echo $tableBoard;
 
 
+function clearDate($value){
+    $value = trim($value);
+    $value = stripcslashes($value);
+    $value = strip_tags($value);
+    $value = htmlspecialchars($value);
+    return $value;
+}
 
-function getUserCountCol($countCol = 8){
-    if(isset($_POST["countCol"])){
-        $countCol = $_POST["countCol"];
+function getClassTd($row, $col){
+    $classTd = 'black';
+    if($row % 2 != 0){
+        if($col % 2 != 0){
+            $classTd = 'white';
+        }
+    } else {
+        if($col % 2 == 0){
+            $classTd = 'white';
+        }
+    }
+    return $classTd;
+}
+
+function getCountCol($userCountCol){
+    if(isset($userCountCol)){
+        $countCol = $userCountCol;
+    } 
+    if(empty($userCountCol)){
+        $countCol = 8;
     }
     return $countCol;
 }
 
-function getUserCountRow($countRow = 8){
-    if(isset($_POST["countRow"])){
-        $countRow = $_POST["countRow"];
+function getCountRow($userCountRow){
+    if(isset($userCountRow)){
+        $countRow = $userCountRow;
+    } 
+    if(empty($userCountRow)){
+        $countRow = 8;
     }
     return $countRow;
 }
 
-function getUserColorOne($userColorOne = "black"){
-    if (isset($_POST["colorOne"])){
-        $userColorOne = $_POST["colorOne"];
-    }
-    return $userColorOne;
-}
-
-function getUserColorTwo($userColorTwo = "silver"){
-    if (isset($_POST["colorTwo"])){
-        $userColorTwo = $_POST["colorTwo"];
-    }
-    return $userColorTwo;
-}
 
 function getTrSymbols($symbols, $countCol){
     $trSymbols  = "<tr>";
@@ -87,8 +130,8 @@ function getTdNumbers($numbersBoard, $row){
     return $tdNumbers;
 }
 
-function getTdBoard($color, $symbolBoard, $numbersBoard, $row){
-    $tdBoard = "<td style=\"background-color:".$color." \" class=\"white\">";
+function getTdBoard($color, $symbolBoard, $numbersBoard, $row, $classTd){
+    $tdBoard = "<td style=\"background-color:".$color." \" class=\"".$classTd."\">";
     $tdBoard .= $symbolBoard.$numbersBoard[$row - 1]."</td>";
     return $tdBoard;
 }
@@ -121,8 +164,6 @@ function getSymbols($symbols, $col){
     $symbolBoard = $symbols[$col - 1];
     return $symbolBoard;
 }
-
-
 
 
 
