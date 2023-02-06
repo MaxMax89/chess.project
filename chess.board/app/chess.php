@@ -8,33 +8,38 @@ $userCountCol = clearDate($_POST['countCol']);
 $userColorOne = clearDate($_POST['colorOne']);
 $userColorTwo = clearDate($_POST['colorTwo']);
 
+$errorMessegeColor = '<small class="error_text">максимум 10 символов</small>';
+$errorMessegeCount = '<small class="error_text">Только число от 1 до 26</small>';
+
+$defaultValue = 8;
+
 $errorText = [];
 
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     if(strlen($userColorOne) > 10){
         $userColorOne = false;
-        $errorText['colorOne'] = '<small class="error_text">максимум 10 символов</small>';
+        $errorText['colorOne'] = $errorMessegeColor;
     }
     
     if(strlen($userColorTwo) > 10){
         $userColorTwo = false;
-        $errorText['colorTwo'] = '<small class="error_text">максимум 10 символов</small>' ;
+        $errorText['colorTwo'] = $errorMessegeColor;
     }
 
     if(!filter_var($userCountRow,  FILTER_VALIDATE_INT) || $userCountRow > 26){
-        $userCountRow = 8;
-        $errorText['countRow'] = '<small class="error_text">сдесь должно быть число от 1 до 26</small>' ;
+        $userCountRow = $defaultValue;
+        $errorText['countRow'] = $errorMessegeCount;
     }
    
     if(!filter_var($userCountCol,  FILTER_VALIDATE_INT) || $userCountCol > 26){
-        $userCountCol = 8;
-        $errorText['countCol'] = '<small class="error_text">сдесь должно быть число от 1 до 26</small>' ;
+        $userCountCol = $defaultValue;
+        $errorText['countCol'] = $errorMessegeCount;
     }
 }
 
-$countRow = getCountRow($userCountRow);
-$countCol = getCountCol($userCountCol);
+$countRow = getCountRow($userCountRow, $defaultValue);
+$countCol = getCountCol($userCountCol, $defaultValue);
 
 $symbolBoard = getSymbols($symbols, $col);
 
@@ -94,22 +99,22 @@ function getClassTd($row, $col){
     return $classTd;
 }
 
-function getCountCol($userCountCol){
+function getCountCol($userCountCol, $defaultValue){
     if(isset($userCountCol)){
         $countCol = $userCountCol;
     } 
     if(empty($userCountCol)){
-        $countCol = 8;
+        $countCol = $defaultValue;
     }
     return $countCol;
 }
 
-function getCountRow($userCountRow){
+function getCountRow($userCountRow, $defaultValue){
     if(isset($userCountRow)){
         $countRow = $userCountRow;
     } 
     if(empty($userCountRow)){
-        $countRow = 8;
+        $countRow = $defaultValue;
     }
     return $countRow;
 }
