@@ -28,12 +28,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
 
     if(!filter_var($userCountRow,  FILTER_VALIDATE_INT) || $userCountRow > 26){
-        $userCountRow = $defaultValue;
+        $userCountRow = false;
         $errorText['countRow'] = $errorMessegeCount;
     }
    
     if(!filter_var($userCountCol,  FILTER_VALIDATE_INT) || $userCountCol > 26){
-        $userCountCol = $defaultValue;
+        $userCountCol = false;
         $errorText['countCol'] = $errorMessegeCount;
     }
 }
