@@ -9,7 +9,7 @@
   <body>
     <div class="main_conteiner">
       <div class="main_wrapper">
-      <?include("inc_menu_top.php");?>
+      <? include("inc_menu_top.php");?>
       
       
     
