@@ -22,10 +22,8 @@ for ($row = 1; $row <= $countRow; $row++) {
 	$tableBoard .= $tdNumbers;
 
 	for ($col = 1; $col <= $countCol; $col++) {
-
 		$symbolBoard = getSymbols($symbols, $col);
-		$tdBoard = "<td class='black'>" . $symbolBoard . $numbersBoard[$row - 1] . "</td>";
-
+		$tdBoard = getTdBoard($symbolBoard, $numbersBoard, $row);
 
 		$tableBoard .= $tdBoard;
 
@@ -37,6 +35,13 @@ $tableBoard .= getTrSymbols($symbols, $countCol);
 $tableBoard .= "</table>";
 
 echo $tableBoard;
+
+function getTdBoard($symbolBoard, $numbersBoard, $row)
+{
+	$tdBoard = "<td data-cel=" . $symbolBoard . $numbersBoard[$row - 1] . " class='white'>";
+	$tdBoard .= $symbolBoard . $numbersBoard[$row - 1] . "</td>";
+	return $tdBoard;
+}
 
 
 function getTrSymbols($symbols, $countCol)
