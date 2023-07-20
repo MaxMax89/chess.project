@@ -6,6 +6,8 @@ $symbols = range('A', 'Z');
 $countRow = 8;
 $countCol = 8;
 
+$blackCell = str_split(file_get_contents("ajax/log.txt"), 2);
+
 
 $tableBoard = "<table class =\"board\">";
 
@@ -21,7 +23,8 @@ for ($row = 1; $row <= $countRow; $row++) {
 
 	for ($col = 1; $col <= $countCol; $col++) {
 		$symbolBoard = getSymbols($symbols, $col);
-		$tdBoard = getTdBoard($symbolBoard, $numbersBoard, $row);
+		$dataCell = $symbolBoard.$numbersBoard[$row - 1];
+		$tdBoard = getTdBoard($symbolBoard, $numbersBoard, $row, $dataCell, $blackCell);
 
 		$tableBoard .= $tdBoard;
 
@@ -34,10 +37,15 @@ $tableBoard .= "</table>";
 
 echo $tableBoard;
 
-function getTdBoard($symbolBoard, $numbersBoard, $row)
+function getTdBoard($symbolBoard, $numbersBoard, $row, $dataCell, $blackCell)
 {
-	$tdBoard = "<td data-cell=" . $symbolBoard . $numbersBoard[$row - 1] . " class='white'>";
-	$tdBoard .= $symbolBoard . $numbersBoard[$row - 1] . "</td>";
+    if(in_array($dataCell, $blackCell)){
+		$tdBoard = "<td data-cell=" . $dataCell . " class='white black'>";
+		$tdBoard .= $symbolBoard . $numbersBoard[$row - 1] . "</td>";
+	} else {
+		$tdBoard = "<td data-cell=" . $dataCell . " class='white'>";
+		$tdBoard .= $symbolBoard . $numbersBoard[$row - 1] . "</td>";
+	}
 	return $tdBoard;
 }
 
