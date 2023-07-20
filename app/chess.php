@@ -6,8 +6,6 @@ $symbols = range('A', 'Z');
 $countRow = 8;
 $countCol = 8;
 
-$symbolBoard = getSymbols($symbols, $col);
-
 
 $tableBoard = "<table class =\"board\">";
 
@@ -38,7 +36,7 @@ echo $tableBoard;
 
 function getTdBoard($symbolBoard, $numbersBoard, $row)
 {
-	$tdBoard = "<td data-cel=" . $symbolBoard . $numbersBoard[$row - 1] . " class='white'>";
+	$tdBoard = "<td data-cell=" . $symbolBoard . $numbersBoard[$row - 1] . " class='white'>";
 	$tdBoard .= $symbolBoard . $numbersBoard[$row - 1] . "</td>";
 	return $tdBoard;
 }
