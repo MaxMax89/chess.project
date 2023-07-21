@@ -9,11 +9,6 @@ file_put_contents("log.txt", $logInfoTxt);
 
 
 
-
-
-
-
-
 function getLogInfo($logTxt){
 	$elCounts = array_count_values($logTxt);
 	$logInfoTxt = [];
