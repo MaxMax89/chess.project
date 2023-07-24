@@ -1,29 +1,28 @@
 $(function () {
-
     $(document).on("click", ".white", activateCell);
     $(document).on("click", ".black", deactivateCell);
 
 
     function activateCell() {
-        var cell = $(this);
-        var attributeCell = cell.attr("data-cell");
+        var addCell = $(this);
+        var attributeCell = addCell.attr("data-cell");
 
-        cell.addClass("black");
-        cell.removeClass("white");
+        addCell.addClass("black");
+        addCell.removeClass("white");
 
-        $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell);
+        $.get("ajax/cell.saver.php?cmd=add&addCell=" + attributeCell);
 
 
     }
 
     function deactivateCell() {
-        var cell = $(this);
-        var attributeCell = cell.attr("data-cell");
+        var dellCell = $(this);
+        var attributeCell = dellCell.attr("data-cell");
 
-        cell.addClass("white");
-        cell.removeClass("black");
+        dellCell.addClass("white");
+        dellCell.removeClass("black");
 
-        $.get("ajax/cell.saver.php?cmd=dell&cell=" + attributeCell);
+        $.get("ajax/cell.saver.php?cmd=dell&dellCell=" + attributeCell);
     }
 
 });

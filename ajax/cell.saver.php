@@ -1,26 +1,40 @@
 <?php
-$addAttributeCell = $_GET["cell"];
-file_put_contents("log.txt", $addAttributeCell . ";", FILE_APPEND);
-
-$attributes = str_split(file_get_contents("log.txt"), 3);
-
-$delAttributeCell = deactivateCell($attributes);
-
-file_put_contents("log.txt", $delAttributeCell);
+$addCell = $_GET["addCell"];
+$dellCell = $_GET["dellCell"];
 
 
-function deactivateCell($attributes)
+activateCell($addCell, "log.txt");
+deactivateCell($dellCell, "log.txt");
+
+
+function deactivateCell($dellCell, $path)
 {
-	$elCounts = array_count_values($attributes);
-	for ($i = 0; $i < count($attributes); $i++) {
-		foreach ($elCounts as $key => $value) {
-			if ($attributes[$i] == $key && $value == 1) {
-				$delAttributeCell[] = $attributes[$i];
-				break;
-			}
-		}
+	if (!empty($dellCell)) {
+		$cells = file_get_contents($path);
+		$cells = str_replace($dellCell . ";", "", $cells);
+		file_put_contents($path, $cells);
+
 	}
-	return $delAttributeCell;
 }
+
+
+function activateCell($addCell, $path)
+{
+	if (!empty($addCell)) {
+		$addCell = substr_replace($addCell, ";", 2);
+		file_put_contents($path, $addCell, FILE_APPEND);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
