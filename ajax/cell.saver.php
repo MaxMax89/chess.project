@@ -1,27 +1,31 @@
 <?php
-$info = $_GET["info"];
-file_put_contents("log.txt", $info, FILE_APPEND);
-$logTxt = str_split(file_get_contents("log.txt"), 2);
+$addAttributeCell = $_GET["cell"];
+file_put_contents("log.txt", $addAttributeCell . ";", FILE_APPEND);
 
-$logInfoTxt = getLogInfo($logTxt);
+$attributes = str_split(file_get_contents("log.txt"), 3);
 
-file_put_contents("log.txt", $logInfoTxt);
+$delAttributeCell = deactivateCell($attributes);
+
+file_put_contents("log.txt", $delAttributeCell);
 
 
 
-function getLogInfo($logTxt){
-	$elCounts = array_count_values($logTxt);
-	$logInfoTxt = [];
 
-	for ($i = 0; $i < count($logTxt); $i++){
-		foreach ($elCounts as $key => $value){
-			if($logTxt[$i] == $key && $value == 1){
-				$logInfoTxt[] = $logTxt[$i];
+
+
+
+function deactivateCell($attributes)
+{
+	$elCounts = array_count_values($attributes);
+	for ($i = 0; $i < count($attributes); $i++) {
+		foreach ($elCounts as $key => $value) {
+			if ($attributes[$i] == $key && $value == 1) {
+				$delAttributeCell[] = $attributes[$i];
 				break;
 			}
 		}
 	}
-	return $logInfoTxt;
+	return $delAttributeCell;
 }
 
 

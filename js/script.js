@@ -1,42 +1,30 @@
 $(function () {
-    $(document).on("click", ".white", onClickCell);
 
-    // path?cmd=add&cell=a1  // Добавление
-    // path?cmd=dell&cell=b1 // Удаление
+    $(document).on("click", ".white", activateCell);
+    $(document).on("click", ".black", deactivateCell);
 
 
-    function onClickCell() {
-        var $cell = $(this);
-        var info = $cell.attr("data-cell");
 
-        if ($cell.hasClass("black")) {
-            $cell.removeClass("black");
-            sendData(info, "remove");
-        } else {
-            $cell.addClass("black");
-            sendData(info, "add");
-        }
+    function activateCell() {
+        var cell = $(this);
+        var attributeCell = cell.attr("data-cell");
+
+        cell.addClass("black");
+        cell.removeClass("white");
+
+        $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell);
+
+
     }
 
-function sendData(info, flag){
+    function deactivateCell() {
+        var cell = $(this);
+        var attributeCell = cell.attr("data-cell");
 
-        if(flag=="remove"){
+        cell.addClass("white");
+        cell.removeClass("black");
 
-        } else {
-
-        }
-        // $.get("ajax/cell.saver.php?cmd=add&cell=a1);
-
-    $.get("ajax/cell.saver.php?info=" + info);
-
-}
-
-function activateCell(){
-
-}
-
-function deactivateCell(){
-
-}
+        $.get("ajax/cell.saver.php?cmd=dell&cell=" + attributeCell);
+    }
 
 });
