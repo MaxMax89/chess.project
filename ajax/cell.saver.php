@@ -9,11 +9,6 @@ $delAttributeCell = deactivateCell($attributes);
 file_put_contents("log.txt", $delAttributeCell);
 
 
-
-
-
-
-
 function deactivateCell($attributes)
 {
 	$elCounts = array_count_values($attributes);

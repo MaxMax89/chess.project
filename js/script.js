@@ -4,7 +4,6 @@ $(function () {
     $(document).on("click", ".black", deactivateCell);
 
 
-
     function activateCell() {
         var cell = $(this);
         var attributeCell = cell.attr("data-cell");
