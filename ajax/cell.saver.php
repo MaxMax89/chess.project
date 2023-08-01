@@ -1,28 +1,31 @@
 <?php
-$addCell = $_GET["addCell"];
-$dellCell = $_GET["dellCell"];
+$cell = $_GET["cell"];
+
+if ($_GET["cmd"] == "add") {
+	activateCell($cell, "log.txt");
+}
+
+if ($_GET["cmd"] == "dell") {
+	deactivateCell($cell, "log.txt");
+}
 
 
-activateCell($addCell, "log.txt");
-deactivateCell($dellCell, "log.txt");
-
-
-function deactivateCell($dellCell, $path)
+function deactivateCell($cell, $path)
 {
-	if (!empty($dellCell)) {
+	if (!empty($cell)) {
 		$cells = file_get_contents($path);
-		$cells = str_replace($dellCell . ";", "", $cells);
+		$cells = str_replace($cell . ";", "", $cells);
 		file_put_contents($path, $cells);
 
 	}
 }
 
 
-function activateCell($addCell, $path)
+function activateCell($cell, $path)
 {
-	if (!empty($addCell)) {
-		$addCell = substr_replace($addCell, ";", 2);
-		file_put_contents($path, $addCell, FILE_APPEND);
+	if (!empty($cell)) {
+		$cell = substr_replace($cell, ";", 2);
+		file_put_contents($path, $cell, FILE_APPEND);
 	}
 }
 

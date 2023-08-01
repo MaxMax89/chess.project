@@ -10,7 +10,7 @@ $(function () {
         addCell.addClass("black");
         addCell.removeClass("white");
 
-        $.get("ajax/cell.saver.php?cmd=add&addCell=" + attributeCell);
+        $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell);
 
 
     }
@@ -22,7 +22,7 @@ $(function () {
         dellCell.addClass("white");
         dellCell.removeClass("black");
 
-        $.get("ajax/cell.saver.php?cmd=dell&dellCell=" + attributeCell);
+        $.get("ajax/cell.saver.php?cmd=dell&cell=" + attributeCell);
     }
 
 });
