@@ -1,5 +1,6 @@
 <?php
 $cell = $_GET["cell"];
+$bgCell = $_GET["color"];
 
 if ($_GET["cmd"] == "add") {
 	activateCell($cell, "log.txt");
@@ -9,6 +10,9 @@ if ($_GET["cmd"] == "dell") {
 	deactivateCell($cell, "log.txt");
 }
 
+if ($_GET["cmd"] == "selectColor") {
+	file_put_contents("bg.color.txt", $bgCell);
+}
 
 function deactivateCell($cell, $path)
 {
