@@ -7,7 +7,11 @@ $countRow = 8;
 
 $symbols = range("A", $alphapet[$countCol - 1]);
 $numbers = range($countRow, 1);
-
+echo "<tr>";
+for($i = 0; $i < $countCol; $i++){
+	echo "<td class='coordinates'>$symbols[$i]</td>";
+}
+echo"</tr>";
 echo getChessBoard($symbols, $numbers);
 
 
