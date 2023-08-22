@@ -1,1 +1,0 @@
-D8:undefined;E6:undefined;E8:undefined;F6:undefined;E6:undefined;D5:undefined;E5:undefined;E4:undefined;E3:undefined;C6:undefined;B5:undefined;C3:undefined;E2:undefined;G2:undefined;H3:undefined;E5:undefined;D8:yellow;E7:yellow;E7:green;D8:green;F7:blue;E6:blue;D5:blue;C6:orange;
