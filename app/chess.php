@@ -14,20 +14,20 @@ $colorList = getColorList("ajax/log.txt", "/[:;]/");
 
 $cellList = activateColor($colorList, $cellList);
 
-		$board = "<table class='board'>";
+$board = "<table class='board'>";
 
-		$board .= getSymbolsLine($symbols, $countRow);
+$board .= getSymbolsLine($symbols, $countRow);
 
 foreach (array_chunk($cellList, $countRow, TRUE) as $key => $value) {
-		$board .= "<tr>";
+	$board .= "<tr>";
 
-		$board .= "<td class='coordinates'>$numbers[$key]</td>";
+	$board .= "<td class='coordinates'>$numbers[$key]</td>";
 	foreach ($value as $k => $v) {
 
 		$board .= "<td class='cell_board' data-cell='$k' style='background-color:" . $v['color'] . "'>$k</td>";
 	}
-		$board .= "<td class='coordinates'>$numbers[$key]</td>";
-		$board .= "</tr>";
+	$board .= "<td class='coordinates'>$numbers[$key]</td>";
+	$board .= "</tr>";
 }
 
 $board .= getSymbolsLine($symbols, $countRow);
@@ -37,9 +37,10 @@ $board .= "</table>";
 
 echo $board;
 
-function activateColor($colorList, $cellList){
-	if(!empty($colorList)){
-		foreach ($colorList as $key => $val){
+function activateColor($colorList, $cellList)
+{
+	if (!empty($colorList)) {
+		foreach ($colorList as $key => $val) {
 			$cellList[$key]['color'] = $val;
 		}
 	}
