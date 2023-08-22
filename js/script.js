@@ -19,7 +19,7 @@ $(function () {
     function activateCell() {
         var cell = $(this);
         var attributeCell = cell.attr("data-cell");
-        if(colorCell == "black"){
+        if (colorCell == "black") {
             cell.css("color", "white");
             cell.css("background-color", colorCell);
             $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell + ":" + colorCell + ";");
@@ -33,17 +33,5 @@ $(function () {
 
 
     }
-
-    function deactivateCell() {
-        var cell = $(this);
-        var attributeCell = cell.attr("data-cell");
-
-            cell.css("background-color", "white");
-            cell.removeClass("color-active");
-            cell.css("color", "black");
-
-            $.get("ajax/cell.saver.php?cmd=dell&cell=" + attributeCell);
-        }
-
 
 });
