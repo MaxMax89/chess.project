@@ -1,46 +1,49 @@
 $(function () {
 
 
-    $(document).on("click", ".white", activateCell);
-    $(document).on("click", ".black", deactivateCell);
+    $(document).on("click", ".cell_board", activateCell);
+    $(document).on("click", ".color-active", deactivateCell);
     $(document).on("click", ".select_color", selectColor);
 
+    var colorCell = "black";
 
-function selectColor(){
-    var  cell = $(this);
-    var bgCell = cell.attr("data-cell");
-    console.log(bgCell);
-    $.get("ajax/cell.saver.php?cmd=selectColor&color=" + bgCell);
-}
+    function selectColor() {
+        var cell = $(this);
+        colorCell = cell.attr("bgcolor");
+        $("tr td.active").removeClass("active");
+        cell.addClass("active");
+        $.get("ajax/cell.saver.php?cmd=selectColor&color=" + colorCell);
+    }
+
 
     function activateCell() {
         var cell = $(this);
         var attributeCell = cell.attr("data-cell");
-        $.ajax({url:"ajax/bg.color.txt", success: function (color){
-            console.log("patetoo");
-            cell.css("background-color", color);
-        cell.addClass("black");
-        cell.removeClass("white");
-        }})
-
-        cell.css("background-color", "blue");
-        cell.addClass("black");
-        cell.removeClass("white");
+        if(colorCell == "black"){
+            cell.css("color", "white");
+            cell.css("background-color", colorCell);
+            $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell + ":" + colorCell + ";");
 
 
-        $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell);
+        } else {
+            cell.css("color", "black");
+            cell.css("background-color", colorCell);
+            $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell + ":" + colorCell + ";");
+        }
 
 
     }
 
-    function deactivateCell(color) {
+    function deactivateCell() {
         var cell = $(this);
         var attributeCell = cell.attr("data-cell");
-        cell.css("background-color", "white");
-        cell.addClass("white");
-        cell.removeClass("black");
 
-        $.get("ajax/cell.saver.php?cmd=dell&cell=" + attributeCell);
-    }
+            cell.css("background-color", "white");
+            cell.removeClass("color-active");
+            cell.css("color", "black");
+
+            $.get("ajax/cell.saver.php?cmd=dell&cell=" + attributeCell);
+        }
+
 
 });

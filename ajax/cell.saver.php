@@ -1,36 +1,23 @@
 <?php
 $cell = $_GET["cell"];
-$bgCell = $_GET["color"];
-
-if ($_GET["cmd"] == "add") {
-	activateCell($cell, "log.txt");
-}
-
-if ($_GET["cmd"] == "dell") {
-	deactivateCell($cell, "log.txt");
-}
-
-if ($_GET["cmd"] == "selectColor") {
-	file_put_contents("bg.color.txt", $bgCell);
-}
-
-function deactivateCell($cell, $path)
-{
-	if (!empty($cell)) {
-		$cells = file_get_contents($path);
-		$cells = str_replace($cell . ";", "", $cells);
-		file_put_contents($path, $cells);
-
-	}
-}
+file_put_contents("log.txt", $cell, FILE_APPEND);
 
 
-function activateCell($cell, $path)
-{
-	if (!empty($cell)) {
-		$cell = substr_replace($cell, ";", 2);
-		file_put_contents($path, $cell, FILE_APPEND);
-	}
+
+
+$cellColor = getColorCell("log.txt", "/[:;]/");
+file_put_contents($cellColor);
+
+
+
+
+function getColorCell($path, $pattern){
+	$str = file_get_contents($path);
+	$result = array_filter(preg_split($pattern, $str));
+	$chanks = array_chunk($result, 2);
+	$result = array_combine(array_column($chanks,0), array_column($chanks,1));
+	$result = json_encode($result);
+	return $result;
 }
 
 

@@ -1,48 +1,37 @@
 <?php
 
-$alphapet = range('A', 'Z');
+$symbolsList = range('A', 'Z');
 
 $countCol = 8;
 $countRow = 8;
 
-$symbols = range("A", $alphapet[$countCol - 1]);
+$symbols = range("A", $symbolsList[$countCol - 1]);
 $numbers = range($countRow, 1);
-echo "<tr>";
-for($i = 0; $i < $countCol; $i++){
-	echo "<td class='coordinates'>$symbols[$i]</td>";
-}
-echo"</tr>";
-echo getChessBoard($symbols, $numbers);
 
+$board = "<table class='board'>";
 
+foreach ($numbers as $number) {
 
+	$board .= "<tr>";
+	$board .= "<td class='coordinates'>$number</td>";
+	foreach ($symbols as $symbol) {
 
-
-
-
-
-
-
-
-function getChessBoard($symbols, $numbers){
-
-	$board = "<table class='board'>";
-
-	foreach ($numbers as $number) {
-
-		$board .= "<tr>";
-		$board .= "<td class='coordinates'>$number</td>";
-		foreach ($symbols as $symbol) {
-
-			$board .= "<td class='cell_board'>" . $symbol . $number . "</td>";
-		}
-		$board .= "<td class='coordinates'>$number</td>";
-		$board .= "</tr>";
+		$board .= "<td class='cell_board' data-cell='$symbol$number'>" . $symbol . $number . "</td>";
 	}
-
-	$board .= "</table>";
-	return $board;
+	$board .= "<td class='coordinates'>$number</td>";
+	$board .= "</tr>";
 }
+
+$board .= "</table>";
+
+
+echo $board;
+
+
+
+
+
+
 
 ?>
 
