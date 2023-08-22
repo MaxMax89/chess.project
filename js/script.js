@@ -2,7 +2,6 @@ $(function () {
 
 
     $(document).on("click", ".cell_board", activateCell);
-    $(document).on("click", ".color-active", deactivateCell);
     $(document).on("click", ".select_color", selectColor);
 
     var colorCell = "black";
