@@ -14,6 +14,7 @@ $colorList = getColorList("ajax/log.txt", "/[:;]/");
 
 $cellList = activateColor($colorList, $cellList);
 
+
 $board = "<table class='board'>";
 
 $board .= getSymbolsLine($symbols, $countRow);
@@ -24,7 +25,7 @@ foreach (array_chunk($cellList, $countRow, TRUE) as $key => $value) {
 	$board .= "<td class='coordinates'>$numbers[$key]</td>";
 	foreach ($value as $k => $v) {
 
-		$board .= "<td class='cell_board' data-cell='$k' style='background-color:" . $v['color'] . "'>$k</td>";
+		$board .= getTdCell($k, $v);
 	}
 	$board .= "<td class='coordinates'>$numbers[$key]</td>";
 	$board .= "</tr>";
@@ -37,6 +38,17 @@ $board .= "</table>";
 
 echo $board;
 
+
+function getTdCell($k, $v)
+{
+	$tdCell = "<td class='cell_board'";
+	$tdCell .= " data-cell='$k'";
+	$tdCell .= " data-bgcolor= " . $v['color'] . "";
+	$tdCell .= " style='background-color:" . $v['color'] . ";";
+	$tdCell .= "'>$k</td>";
+	return $tdCell;
+}
+
 function activateColor($colorList, $cellList)
 {
 	if (!empty($colorList)) {
@@ -46,6 +58,7 @@ function activateColor($colorList, $cellList)
 	}
 	return $cellList;
 }
+
 
 function getSymbolsLine($symbols, $countRow)
 {
@@ -65,11 +78,12 @@ function getCellList($numbers, $symbols)
 
 		foreach ($symbols as $symbol) {
 
-			$cellList[$symbol . $number] = ["color" => "white"];
+			$cellList[$symbol . $number] = ["color" => "white", "col" => "green"];
 		}
 	}
 	return $cellList;
 }
+
 
 function getColorList($path, $pattern)
 {
@@ -79,6 +93,7 @@ function getColorList($path, $pattern)
 	$colorList = array_combine(array_column($chanks, 0), array_column($chanks, 1));
 	return $colorList;
 }
+
 
 ?>
 

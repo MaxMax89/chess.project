@@ -1,36 +1,36 @@
 $(function () {
 
 
-    $(document).on("click", ".cell_board", activateCell);
+    $(document).on("click", ".cell_board", changeColorCell);
     $(document).on("click", ".select_color", selectColor);
 
-    var colorCell = "black";
+
+    var colorCell = "darkgray";
 
     function selectColor() {
         var cell = $(this);
-        colorCell = cell.attr("bgcolor");
+        colorCell = cell.attr("data-bgcolor");
         $("tr td.active").removeClass("active");
         cell.addClass("active");
-        $.get("ajax/cell.saver.php?cmd=selectColor&color=" + colorCell);
+
     }
 
 
-    function activateCell() {
+    function changeColorCell() {
         var cell = $(this);
         var attributeCell = cell.attr("data-cell");
-        if (colorCell == "black") {
-            cell.css("color", "white");
-            cell.css("background-color", colorCell);
-            $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell + ":" + colorCell + ";");
-
+        if (cell.attr("data-bgcolor") === colorCell) {
+            cell.css("background-color", "white");
+            cell.attr("data-bgcolor", "white");
+            $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell + ":white;");
 
         } else {
-            cell.css("color", "black");
             cell.css("background-color", colorCell);
+            cell.attr("data-bgcolor", colorCell);
             $.get("ajax/cell.saver.php?cmd=add&cell=" + attributeCell + ":" + colorCell + ";");
         }
 
-
     }
+
 
 });
