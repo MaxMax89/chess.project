@@ -78,7 +78,7 @@ function getCellList($numbers, $symbols)
 
 		foreach ($symbols as $symbol) {
 
-			$cellList[$symbol . $number] = ["color" => "white", "col" => "green"];
+			$cellList[$symbol . $number] = ["color" => "white"];
 		}
 	}
 	return $cellList;
