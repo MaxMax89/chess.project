@@ -2,7 +2,7 @@
 
 $colorList = ["darkgray", "red", "orange", "yellow", "green", "blue", "indigo", "violet", "white"];
 
-$boardColors = "<table class='board_color'>";
+$boardColors  = "<table class='board_color'>";
 $boardColors .= "<tr>";
 
 foreach ($colorList as $value) {

@@ -8,14 +8,12 @@ $countRow = 8;
 $symbols = range("A", $symbolsList[$countCol - 1]);
 $numbers = range($countRow, 1);
 
-$cellList = getCellList($numbers, $symbols);
-
+$cellList  = getCellList($numbers, $symbols);
 $colorList = getColorList("ajax/log.txt", "/[:;]/");
+$cellList  = activateColor($colorList, $cellList);
 
-$cellList = activateColor($colorList, $cellList);
 
-
-$board = "<table class='board'>";
+$board  = "<table class='board'>";
 
 $board .= getSymbolsLine($symbols, $countRow);
 
@@ -41,7 +39,7 @@ echo $board;
 
 function getTdCell($k, $v)
 {
-	$tdCell = "<td class='cell_board'";
+	$tdCell  = "<td class='cell_board'";
 	$tdCell .= " data-cell='$k'";
 	$tdCell .= " data-bgcolor= " . $v['color'] . "";
 	$tdCell .= " style='background-color:" . $v['color'] . ";";
@@ -62,11 +60,13 @@ function activateColor($colorList, $cellList)
 
 function getSymbolsLine($symbols, $countRow)
 {
-	$str = "<tr>";
+	$str  = "<tr>";
 	$str .= "<td class=\"coordinates\"></td>";
+
 	for ($col = 1; $col <= $countRow; $col++) {
 		$str .= "<td class=\"coordinates\">" . $symbols[$col - 1] . "</td>";
 	}
+
 	$str .= "<td class=\"coordinates\"></td>";
 	$str .= "</tr>";
 	return $str;
@@ -87,9 +87,9 @@ function getCellList($numbers, $symbols)
 
 function getColorList($path, $pattern)
 {
-	$str = file_get_contents($path);
-	$result = array_filter(preg_split($pattern, $str));
-	$chanks = array_chunk($result, 2);
+	$str       = file_get_contents($path);
+	$result    = array_filter(preg_split($pattern, $str));
+	$chanks    = array_chunk($result, 2);
 	$colorList = array_combine(array_column($chanks, 0), array_column($chanks, 1));
 	return $colorList;
 }
