@@ -9,11 +9,13 @@ $symbols = range("A", $symbolsList[$countCol - 1]);
 $numbers = range($countRow, 1);
 
 $cellList  = getCellList($numbers, $symbols);
-$colorList = getColorList("ajax/log.txt", "/[:;]/");
+$colorList = getColorList("cell", "/[:;]/");
 $cellList  = activateColor($colorList, $cellList);
 
+ include("inc/button.php");
 
-$board  = "<table class='board'>";
+
+$board = "<table class='board'>";
 
 $board .= getSymbolsLine($symbols, $countRow);
 
@@ -85,14 +87,17 @@ function getCellList($numbers, $symbols)
 }
 
 
-function getColorList($path, $pattern)
+function getColorList($cookieName, $pattern)
 {
-	$str       = file_get_contents($path);
+	$str       = $_COOKIE[$cookieName];
 	$result    = array_filter(preg_split($pattern, $str));
 	$chanks    = array_chunk($result, 2);
 	$colorList = array_combine(array_column($chanks, 0), array_column($chanks, 1));
 	return $colorList;
 }
+
+
+
 
 
 ?>
