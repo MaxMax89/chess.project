@@ -6,7 +6,7 @@ $(function () {
     $(document).on("click", ".select_color", selectColor);
     $(document).on("click", ".cell_board", changeColor);
     $(document).on("click", ".color_reset", resetColorBoard);
-    $('[data-cell = currentColor]').addClass('active');
+
 
 
 
@@ -37,7 +37,7 @@ $(function () {
         saveColor(attributeCell, currentColor)
     }
 
-    $('[data-cell = currentColor]').addClass("active");
+
 
 
     function setCurrentColor($cell, currentColor) {
