@@ -1,7 +1,9 @@
 $(function () {
 
-    var currentColor = $.cookie('currentColor');
 
+
+
+    var currentColor = getCurrentColor();
 
     $(document).on("click", ".select_color", selectColor);
     $(document).on("click", ".cell_board", changeColor);
@@ -62,6 +64,15 @@ $(function () {
         $chess.css("background-color", "white");
         $.removeCookie('cell', {path: '/'});
 
+    }
+
+    function getCurrentColor(){
+        if($.cookie('currentColor') === undefined){
+            var currentColor = "darkgray";
+        } else {
+            var currentColor = $.cookie('currentColor')
+        }
+        return currentColor;
     }
 
 });
