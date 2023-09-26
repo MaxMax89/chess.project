@@ -1,7 +1,7 @@
 <?php
 
 $colorList    = ["darkgray", "red", "orange", "yellow", "green", "blue", "indigo", "violet", "white"];
-$currentColor = getCurrentColor('currentColor');
+$currentColor = getCurrentColor('CURRENT-COLOR');
 
 
 $boardColors  = "<table class='board_color'>";
@@ -9,7 +9,7 @@ $boardColors .= "<tr>";
 
 foreach ($colorList as $color) {
 	if ($color == $currentColor) {
-		$boardColors .= "<td class='select_color active'";
+		$boardColors .= "<td class='select_color current'";
 		$boardColors .= " data-cell='$color'";
 		$boardColors .= "bgcolor='$color'></td>";
 	} else {

@@ -9,7 +9,7 @@ $symbols = range("A", $symbolsList[$countCol - 1]);
 $numbers = range($countRow, 1);
 
 $cellList  = getCellList($numbers, $symbols);
-$colorList = getColorList("cell", "/[:;]/");
+$colorList = getColorList('CHESS-CELLS', "/[:;]/");
 $cellList  = activateColor($colorList, $cellList);
 
  include("inc/button.php");
